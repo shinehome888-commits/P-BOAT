@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="P BOAT Company - Professional, reliable, and safe electrical installation and maintenance in East Legon, Accra, Ghana.">
-    <meta name="keywords" content="Electrician, Electrical Services, P BOAT Company, East Legon, Accra, Ghana, House Wiring, CCTV, Generator Installation">
-    <title>P BOAT Company | Professional Electricians in Accra</title>
+    <meta name="description" content="P BOAT Ltd - Professional, reliable, and safe electrical installation and maintenance in East Legon, Accra, Ghana.">
+    <meta name="keywords" content="Electrician, Electrical Services, P BOAT Ltd, East Legon, Accra, Ghana, House Wiring, CCTV, Generator Installation">
+    <title>P BOAT Ltd | Professional Electricians in Accra</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,16 +22,16 @@
         :root {
             --primary: #0B3D91;
             --primary-dark: #082a66;
+            --primary-light: #1a5bc4;
             --accent: #FFD000;
             --accent-hover: #e6bc00;
             --dark: #333333;
             --light: #F8F9FA;
             --white: #FFFFFF;
             --gray: #6c757d;
-            --shadow: 0 10px 30px rgba(11, 61, 145, 0.1);
-            --shadow-hover: 0 15px 40px rgba(11, 61, 145, 0.15);
-            --radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-3d: 0 10px 20px rgba(11, 61, 145, 0.1), 0 6px 6px rgba(11, 61, 145, 0.05), 0 0 0 1px rgba(255,255,255,0.5) inset;
+            --shadow-3d-hover: 0 20px 30px rgba(11, 61, 145, 0.15), 0 10px 10px rgba(11, 61, 145, 0.1), 0 0 0 1px rgba(255,255,255,0.8) inset;
+            --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         * {
@@ -47,7 +47,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             color: var(--dark);
-            background-color: var(--white);
+            background-color: var(--light);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -90,6 +90,7 @@
             color: var(--primary);
             margin-bottom: 15px;
             font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
         }
 
         .section-header p {
@@ -102,18 +103,18 @@
         .accent-line {
             width: 60px;
             height: 4px;
-            background-color: var(--accent);
+            background: linear-gradient(90deg, var(--accent), var(--primary));
             margin: 15px auto;
             border-radius: 2px;
         }
 
-        /* Buttons */
+        /* 3D Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
             padding: 14px 32px;
-            border-radius: 50px;
+            border-radius: 12px;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
@@ -122,56 +123,65 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.15), 0 8px 15px rgba(0,0,0,0.1);
+            transform: translateY(0);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 0 rgba(0,0,0,0.15), 0 12px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.15), 0 3px 5px rgba(0,0,0,0.1);
         }
 
         .btn-primary {
-            background-color: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
             color: var(--primary);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 208, 0, 0.3);
         }
 
         .btn-outline {
             background-color: transparent;
             color: var(--white);
             border: 2px solid var(--white);
+            box-shadow: 0 4px 0 rgba(255,255,255,0.2), 0 8px 15px rgba(0,0,0,0.1);
         }
 
         .btn-outline:hover {
             background-color: var(--white);
             color: var(--primary);
-            transform: translateY(-3px);
         }
 
+        /* Blue & White WhatsApp Button */
         .btn-whatsapp {
-            background-color: #25D366;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: var(--white);
         }
 
         .btn-whatsapp:hover {
-            background-color: #128C7E;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
         }
 
-        /* Ripple Effect */
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(0);
-            animation: ripple-animation 0.6s linear;
-            pointer-events: none;
+        /* Page Section Toggling */
+        .page-section {
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
         }
 
-        @keyframes ripple-animation {
-            to {
-                transform: scale(4);
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
                 opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -197,7 +207,7 @@
             width: 100%;
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             z-index: 1000;
             transition: var(--transition);
         }
@@ -214,13 +224,15 @@
             align-items: center;
             gap: 10px;
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--primary);
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.05);
         }
 
         .logo i {
             color: var(--accent);
             font-size: 1.8rem;
+            filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.1));
         }
 
         .nav-menu {
@@ -230,21 +242,23 @@
         }
 
         .nav-link {
-            font-weight: 500;
+            font-weight: 600;
             color: var(--dark);
             transition: var(--transition);
             position: relative;
+            padding: 5px 0;
         }
 
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 3px;
             background-color: var(--accent);
             transition: var(--transition);
+            border-radius: 2px;
         }
 
         .nav-link:hover {
@@ -264,7 +278,7 @@
         }
 
         .hamburger span {
-            width: 25px;
+            width: 28px;
             height: 3px;
             background-color: var(--primary);
             border-radius: 3px;
@@ -272,7 +286,7 @@
         }
 
         .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 6px);
+            transform: rotate(45deg) translate(6px, 6px);
         }
 
         .hamburger.active span:nth-child(2) {
@@ -280,7 +294,7 @@
         }
 
         .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -6px);
+            transform: rotate(-45deg) translate(6px, -6px);
         }
 
         /* =========================================
@@ -288,18 +302,17 @@
            ========================================= */
         .hero {
             position: relative;
-            height: 100vh;
-            min-height: 600px;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(rgba(11, 61, 145, 0.85), rgba(11, 61, 145, 0.9)), 
+            background: linear-gradient(135deg, rgba(11, 61, 145, 0.92) 0%, rgba(8, 42, 102, 0.95) 100%), 
                         url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             color: var(--white);
             padding-top: 80px;
         }
 
         .hero-content {
-            max-width: 700px;
+            max-width: 750px;
         }
 
         .hero h1 {
@@ -307,6 +320,7 @@
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         .typing-text {
@@ -322,9 +336,10 @@
 
         .hero p {
             font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
+            margin-bottom: 35px;
+            opacity: 0.95;
             line-height: 1.8;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .hero-buttons {
@@ -336,17 +351,19 @@
         .floating-shape {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 208, 0, 0.1);
+            background: rgba(255, 208, 0, 0.08);
             animation: float 6s ease-in-out infinite;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .shape-1 { width: 100px; height: 100px; top: 20%; right: 10%; animation-delay: 0s; }
-        .shape-2 { width: 150px; height: 150px; bottom: 20%; right: 20%; animation-delay: 2s; }
-        .shape-3 { width: 60px; height: 60px; top: 40%; right: 30%; animation-delay: 4s; }
+        .shape-1 { width: 120px; height: 120px; top: 15%; right: 10%; animation-delay: 0s; }
+        .shape-2 { width: 180px; height: 180px; bottom: 15%; right: 15%; animation-delay: 2s; }
+        .shape-3 { width: 80px; height: 80px; top: 40%; right: 35%; animation-delay: 4s; }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(5deg); }
         }
 
         /* =========================================
@@ -365,20 +382,22 @@
 
         .about-image {
             position: relative;
-            border-radius: var(--radius);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-3d);
+            transform: perspective(1000px) rotateY(-2deg);
+            transition: var(--transition);
+        }
+
+        .about-image:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.02);
+            box-shadow: var(--shadow-3d-hover);
         }
 
         .about-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
         }
 
         .about-content h3 {
@@ -402,15 +421,22 @@
 
         .stat-item {
             text-align: center;
-            padding: 20px;
-            background-color: var(--light);
-            border-radius: var(--radius);
-            border-bottom: 3px solid var(--accent);
+            padding: 25px 15px;
+            background-color: var(--white);
+            border-radius: 16px;
+            border-bottom: 4px solid var(--accent);
+            box-shadow: var(--shadow-3d);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-3d-hover);
         }
 
         .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.2rem;
+            font-weight: 800;
             color: var(--primary);
             display: block;
         }
@@ -418,6 +444,7 @@
         .stat-label {
             font-size: 0.9rem;
             color: var(--gray);
+            font-weight: 500;
         }
 
         /* =========================================
@@ -436,12 +463,13 @@
         .service-card {
             background-color: var(--white);
             padding: 40px 30px;
-            border-radius: var(--radius);
+            border-radius: 16px;
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-3d);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.8);
         }
 
         .service-card::before {
@@ -451,14 +479,14 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background-color: var(--accent);
+            background: linear-gradient(90deg, var(--primary), var(--accent));
             transform: scaleX(0);
             transition: var(--transition);
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-3d-hover);
         }
 
         .service-card:hover::before {
@@ -466,23 +494,25 @@
         }
 
         .service-icon {
-            width: 70px;
-            height: 70px;
-            background-color: rgba(11, 61, 145, 0.1);
-            border-radius: 50%;
+            width: 75px;
+            height: 75px;
+            background: linear-gradient(135deg, rgba(11, 61, 145, 0.1) 0%, rgba(11, 61, 145, 0.05) 100%);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
+            margin: 0 auto 25px;
             font-size: 1.8rem;
             color: var(--primary);
             transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(11, 61, 145, 0.1);
         }
 
         .service-card:hover .service-icon {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: var(--accent);
-            transform: rotateY(360deg);
+            transform: rotateY(180deg);
+            box-shadow: 0 8px 20px rgba(11, 61, 145, 0.3);
         }
 
         .service-card h3 {
@@ -511,28 +541,31 @@
 
         .feature-card {
             text-align: center;
-            padding: 40px 20px;
-            border-radius: var(--radius);
+            padding: 40px 25px;
+            border-radius: 16px;
+            background: var(--white);
             border: 1px solid #eee;
             transition: var(--transition);
+            box-shadow: var(--shadow-3d);
         }
 
         .feature-card:hover {
             border-color: var(--accent);
-            box-shadow: var(--shadow);
-            transform: translateY(-5px);
+            box-shadow: var(--shadow-3d-hover);
+            transform: translateY(-8px);
         }
 
         .feature-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
+            font-size: 2.8rem;
+            color: var(--primary);
             margin-bottom: 20px;
+            filter: drop-shadow(0 4px 6px rgba(11, 61, 145, 0.2));
         }
 
         .feature-card h3 {
             font-size: 1.3rem;
             margin-bottom: 10px;
-            color: var(--primary);
+            color: var(--dark);
         }
 
         .feature-card p {
@@ -541,108 +574,54 @@
         }
 
         /* =========================================
-           8. PROJECTS GALLERY
+           8. PROJECTS GALLERY (COMING SOON)
            ========================================= */
         .projects {
             background-color: var(--light);
         }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: var(--radius);
-            overflow: hidden;
-            cursor: pointer;
-            height: 300px;
-            box-shadow: var(--shadow);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(11, 61, 145, 0.8);
+        .coming-soon-container {
             display: flex;
-            align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: var(--transition);
+            align-items: center;
+            min-height: 400px;
         }
 
-        .gallery-overlay i {
-            color: var(--white);
-            font-size: 2rem;
-            transform: scale(0);
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-item:hover .gallery-overlay i {
-            transform: scale(1);
-        }
-
-        /* Lightbox */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .coming-soon-card {
+            background: var(--white);
+            padding: 60px 40px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: var(--shadow-3d);
+            max-width: 500px;
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .lightbox.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: var(--radius);
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            color: var(--white);
-            font-size: 2.5rem;
-            cursor: pointer;
+            border: 2px dashed var(--primary);
             transition: var(--transition);
         }
 
-        .lightbox-close:hover {
+        .coming-soon-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: var(--shadow-3d-hover);
+            border-style: solid;
+        }
+
+        .coming-soon-card i {
+            font-size: 4rem;
             color: var(--accent);
-            transform: rotate(90deg);
+            margin-bottom: 25px;
+            filter: drop-shadow(0 4px 8px rgba(255, 208, 0, 0.3));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .coming-soon-card h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .coming-soon-card p {
+            color: var(--gray);
+            font-size: 1.1rem;
         }
 
         /* =========================================
@@ -654,59 +633,57 @@
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
         .testimonial-card {
             background-color: var(--light);
-            padding: 40px 30px;
-            border-radius: var(--radius);
+            padding: 40px 35px;
+            border-radius: 16px;
             position: relative;
             transition: var(--transition);
+            box-shadow: var(--shadow-3d);
+            border-left: 5px solid var(--accent);
         }
 
         .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-3d-hover);
         }
 
         .quote-icon {
-            font-size: 2rem;
-            color: var(--accent);
+            font-size: 2.5rem;
+            color: var(--primary);
             margin-bottom: 20px;
+            opacity: 0.2;
         }
 
         .testimonial-text {
             color: var(--dark);
             font-style: italic;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             line-height: 1.8;
+            font-size: 1.05rem;
         }
 
         .testimonial-author {
             display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .author-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--accent);
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
         }
 
         .author-info h4 {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--primary);
-            margin-bottom: 2px;
+            font-weight: 700;
         }
 
         .author-info .stars {
             color: var(--accent);
-            font-size: 0.9rem;
+            font-size: 1rem;
+            letter-spacing: 2px;
         }
 
         /* =========================================
@@ -723,14 +700,19 @@
 
         .faq-item {
             background-color: var(--white);
-            border-radius: var(--radius);
+            border-radius: 12px;
             margin-bottom: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            box-shadow: var(--shadow-3d);
             overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-3d-hover);
         }
 
         .faq-question {
-            padding: 20px 25px;
+            padding: 22px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -747,6 +729,7 @@
         .faq-question i {
             transition: transform 0.3s ease;
             color: var(--accent);
+            font-size: 1.2rem;
         }
 
         .faq-item.active .faq-question i {
@@ -763,8 +746,8 @@
         }
 
         .faq-item.active .faq-answer {
-            max-height: 200px;
-            padding: 0 25px 20px;
+            max-height: 250px;
+            padding: 0 25px 25px;
         }
 
         /* =========================================
@@ -784,12 +767,13 @@
         .contact h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 50px;
             margin: 40px 0;
             flex-wrap: wrap;
         }
@@ -798,28 +782,37 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .contact-item i {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--accent);
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
         }
 
         .contact-item h4 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 5px;
         }
 
         .contact-item p {
             opacity: 0.9;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
         .contact .btn-whatsapp {
             font-size: 1.2rem;
-            padding: 18px 40px;
+            padding: 18px 45px;
             margin-top: 20px;
+            background: var(--white);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .contact .btn-whatsapp:hover {
+            background: var(--accent);
+            color: var(--primary-dark);
         }
 
         /* =========================================
@@ -878,29 +871,39 @@
         }
 
         .social-links a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
             background-color: rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
             transition: var(--transition);
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
         }
 
         .social-links a:hover {
             background-color: var(--accent);
             color: var(--primary);
             transform: translateY(-3px);
+            box-shadow: 0 7px 0 rgba(0,0,0,0.2);
         }
 
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
+            padding-top: 25px;
             text-align: center;
             color: #aaa;
             font-size: 0.9rem;
+        }
+
+        .footer-bottom .powered-by {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         /* =========================================
@@ -910,41 +913,46 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: #25D366;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            font-size: 2.2rem;
+            box-shadow: 0 6px 0 var(--primary-dark), 0 10px 25px rgba(11, 61, 145, 0.4);
             z-index: 999;
             transition: var(--transition);
-            animation: pulse 2s infinite;
+            animation: pulse-blue 2s infinite;
         }
 
         .floating-whatsapp:hover {
-            transform: scale(1.1);
-            background-color: #128C7E;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 9px 0 var(--primary-dark), 0 15px 30px rgba(11, 61, 145, 0.5);
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        .floating-whatsapp:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 var(--primary-dark), 0 5px 10px rgba(11, 61, 145, 0.4);
+        }
+
+        @keyframes pulse-blue {
+            0% { box-shadow: 0 6px 0 var(--primary-dark), 0 0 0 0 rgba(11, 61, 145, 0.7); }
+            70% { box-shadow: 0 6px 0 var(--primary-dark), 0 0 0 20px rgba(11, 61, 145, 0); }
+            100% { box-shadow: 0 6px 0 var(--primary-dark), 0 0 0 0 rgba(11, 61, 145, 0); }
         }
 
         .back-to-top {
             position: fixed;
             bottom: 30px;
-            right: 100px;
+            right: 110px;
             width: 50px;
             height: 50px;
-            background-color: var(--primary);
-            color: var(--white);
-            border-radius: 50%;
+            background-color: var(--white);
+            color: var(--primary);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -954,7 +962,8 @@
             visibility: hidden;
             transition: var(--transition);
             z-index: 998;
-            border: none;
+            border: 2px solid var(--primary);
+            box-shadow: 0 4px 0 var(--primary), 0 8px 15px rgba(0,0,0,0.1);
         }
 
         .back-to-top.visible {
@@ -963,9 +972,15 @@
         }
 
         .back-to-top:hover {
-            background-color: var(--accent);
-            color: var(--primary);
+            background-color: var(--primary);
+            color: var(--white);
             transform: translateY(-3px);
+            box-shadow: 0 7px 0 var(--primary-dark), 0 12px 20px rgba(0,0,0,0.15);
+        }
+
+        .back-to-top:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 var(--primary-dark), 0 3px 5px rgba(0,0,0,0.1);
         }
 
         /* =========================================
@@ -974,7 +989,8 @@
         @media (max-width: 992px) {
             .hero h1 { font-size: 2.8rem; }
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
-            .about-image { order: -1; }
+            .about-image { order: -1; transform: none; }
+            .about-image:hover { transform: scale(1.02); }
         }
 
         @media (max-width: 768px) {
@@ -1008,14 +1024,14 @@
             .section-header h2 { font-size: 2rem; }
             .stats-grid { grid-template-columns: 1fr; }
             .contact-info { flex-direction: column; gap: 30px; }
-            .back-to-top { right: 30px; bottom: 100px; }
+            .back-to-top { right: 30px; bottom: 110px; }
+            .floating-whatsapp { right: 20px; bottom: 20px; width: 60px; height: 60px; font-size: 1.8rem; }
         }
 
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.8rem; }
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn { width: 100%; justify-content: center; }
-            .gallery-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1026,29 +1042,29 @@
          ========================================= -->
     <header class="header" id="header">
         <div class="container nav-container">
-            <a href="#" class="logo">
+            <a href="#" class="logo" onclick="showSection('home')">
                 <i class="fas fa-bolt"></i>
-                <span>P BOAT Company</span>
+                <span>P BOAT Ltd</span>
             </a>
             
             <nav>
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-                    <li><a href="#faq" class="nav-link">FAQ</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="#" class="nav-link" onclick="showSection('home')">Home</a></li>
+                    <li><a href="#" class="nav-link" onclick="showSection('about')">About</a></li>
+                    <li><a href="#" class="nav-link" onclick="showSection('services')">Services</a></li>
+                    <li><a href="#" class="nav-link" onclick="showSection('projects')">Projects</a></li>
+                    <li><a href="#" class="nav-link" onclick="showSection('testimonials')">Testimonials</a></li>
+                    <li><a href="#" class="nav-link" onclick="showSection('faq')">FAQ</a></li>
+                    <li><a href="#" class="nav-link" onclick="showSection('contact')">Contact</a></li>
                     <li>
-                        <a href="https://wa.me/233XXXXXXXXX?text=Hello%20P%20BOAT%20Company,%20I%20would%20like%20to%20inquire%20about%20your%20electrical%20services." class="btn btn-whatsapp" target="_blank">
+                        <a href="https://wa.me/233542626856?text=Hello%20P%20BOAT%20Ltd,%20I%20would%20like%20to%20inquire%20about%20your%20electrical%20services." class="btn btn-whatsapp" target="_blank">
                             <i class="fab fa-whatsapp"></i> WhatsApp Us
                         </a>
                     </li>
                 </ul>
             </nav>
 
-            <div class="hamburger" id="hamburger">
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -1057,386 +1073,337 @@
     </header>
 
     <!-- =========================================
-         HERO SECTION
+         MAIN CONTENT AREA (Sections toggle here)
          ========================================= -->
-    <section class="hero" id="home">
-        <div class="floating-shape shape-1"></div>
-        <div class="floating-shape shape-2"></div>
-        <div class="floating-shape shape-3"></div>
-        
-        <div class="container">
-            <div class="hero-content fade-in-up">
-                <h1>Professional Electrical Services <br><span class="typing-text" id="typingText"></span></h1>
-                <p>Serving homes, offices, apartments and businesses across East Legon and Greater Accra with reliable, affordable and safe electrical solutions by P BOAT Company.</p>
-                <div class="hero-buttons">
-                    <a href="https://wa.me/233XXXXXXXXX?text=Hello%20P%20BOAT%20Company,%20I%20want%20to%20book%20an%20electrical%20service." class="btn btn-primary" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Book on WhatsApp
-                    </a>
-                    <a href="#services" class="btn btn-outline">
-                        <i class="fas fa-tools"></i> View Our Services
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =========================================
-         ABOUT SECTION
-         ========================================= -->
-    <section class="section-padding about" id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-content fade-in-up">
-                    <div class="section-header" style="text-align: left; margin-bottom: 30px;">
-                        <h2>Who We Are</h2>
-                        <div class="accent-line" style="margin: 15px 0;"></div>
-                    </div>
-                    <h3>Powering Homes & Businesses with Safe, Reliable Electrical Solutions.</h3>
-                    <p>P BOAT Company is a premier electrical contracting company based in East Legon, Accra. With years of hands-on experience, we specialize in delivering top-tier electrical installation, maintenance, and repair services.</p>
-                    <p>Our commitment to safety, quality workmanship, and customer satisfaction has made us the trusted choice for residential and commercial clients across Greater Accra. We use only certified materials and adhere to the highest industry standards.</p>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <span class="stat-number" data-target="10">0</span>
-                            <span class="stat-label">Years Experience</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-target="500">0</span>
-                            <span class="stat-label">Projects Done</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-target="100">0</span>
-                            <span class="stat-label">% Satisfaction</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image fade-in-up">
-                    <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a782?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Professional Electrician at Work" loading="lazy">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =========================================
-         SERVICES SECTION
-         ========================================= -->
-    <section class="section-padding services" id="services">
-        <div class="container">
-            <div class="section-header fade-in-up">
-                <h2>Our Services</h2>
-                <div class="accent-line"></div>
-                <p>Comprehensive electrical solutions tailored to meet your specific needs with precision and care.</p>
-            </div>
-
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card fade-in-up">
-                    <div class="service-icon"><i class="fas fa-home"></i></div>
-                    <h3>House Wiring</h3>
-                    <p>Complete and safe electrical wiring for new constructions and renovations.</p>
-                </div>
-                <!-- Service 2 -->
-                <div class="service-card fade-in-up">
-                    <div class="service-icon"><i class="fas fa-wrench"></i></div>
-                    <h3>Electrical Repairs</h3>
-                    <p>Quick and reliable fixes for all types of electrical faults and issues.</p>
-                </div>
-                <!-- Service 3 -->
-                <div class="service-card fade-in-up">
-                    <div class="service-icon"><i class="fas fa-search"></i></div>
-                    <h3>Fault Detection</h3>
-                    <p>Advanced diagnostic services to identify and resolve hidden electrical problems.</p>
-                </div>
-                <!-- Service 4 -->
-                <div class="service-card fade-in-up">
-                    <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h3>Lighting Installation</h3>
-                    <p>Indoor and outdoor lighting solutions to enhance aesthetics and security.</p>
-                </div>
-                <!-- Service 5 -->
-                <div class="service-card fade-in-up">
-                    <div class="service-icon"><i class="fas fa-fan"></i></div>
-                    <h3>Ceiling Fan Installation</h3>
-                    <p>Secure and balanced installation of all ceiling fan types and brands.</p>
-                </div>
-                <!-- Service 6 -->
-                <div class="service-card fade-in-up">
-                    <div class="service-icon"><i class="fas fa-plug"></i></div>
-                    <h3>Switch & Socket Installation</h3>
-                    <p>Safe installation and upgrading of switches, sockets, and USB outlets.</p>
-                </div>
-                <!-- Service 7 -->
-                <div class="service-card fade-in-up">
-                    <div class="service-icon"><i class="fas fa-server"></i></div>
-                    <h3>Distribution Board</h3>
-                    <p>Professional installation and upgrading of electrical distribution boards.</p>
-                </div>
-                <!-- Service 8 -->
-                <div class="service-card fade-in-up">
-                    <div class="service-icon"><i class="fas fa-charging-station"></i></div>
-                    <h3>Generator Installation</h3>
-                    <p>Seamless integration of backup generators with automatic transfer switches.</p>
-                </div>
-                <!-- Service 9 -->
-                <div class="service-card fade-in-up">
-                    <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Security Lighting</h3>
-                    <p>Motion-sensor and floodlight installation for maximum property security.</p>
-                </div>
-                <!-- Service 10 -->
-                <div class="service-card fade-in-up">
-                    <div class="service-icon"><i class="fas fa-video"></i></div>
-                    <h3>CCTV Wiring</h3>
-                    <p>Professional cabling and setup for security camera systems.</p>
-                </div>
-                <!-- Service 11 -->
-                <div class="service-card fade-in-up">
-                    <div class="service-icon"><i class="fas fa-building"></i></div>
-                    <h3>Commercial Services</h3>
-                    <p>Heavy-duty electrical solutions for offices, shops, and industrial spaces.</p>
-                </div>
-                <!-- Service 12 -->
-                <div class="service-card fade-in-up">
-                    <div class="service-icon"><i class="fas fa-ambulance"></i></div>
-                    <h3>Emergency Support</h3>
-                    <p>Rapid response team available for urgent electrical emergencies.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =========================================
-         WHY CHOOSE US
-         ========================================= -->
-    <section class="section-padding why-choose-us">
-        <div class="container">
-            <div class="section-header fade-in-up">
-                <h2>Why Choose P BOAT Company</h2>
-                <div class="accent-line"></div>
-                <p>We combine expertise, reliability, and customer-centric service to deliver unmatched electrical solutions.</p>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-card fade-in-up">
-                    <div class="feature-icon"><i class="fas fa-user-tie"></i></div>
-                    <h3>Professional Team</h3>
-                    <p>Licensed, insured, and highly trained electricians committed to excellence.</p>
-                </div>
-                <div class="feature-card fade-in-up">
-                    <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    <h3>Fast Response</h3>
-                    <p>Prompt arrival and efficient service to minimize your downtime.</p>
-                </div>
-                <div class="feature-card fade-in-up">
-                    <div class="feature-icon"><i class="fas fa-tags"></i></div>
-                    <h3>Affordable Pricing</h3>
-                    <p>Transparent, competitive rates with no hidden fees or surprise charges.</p>
-                </div>
-                <div class="feature-card fade-in-up">
-                    <div class="feature-icon"><i class="fas fa-award"></i></div>
-                    <h3>Guaranteed Quality</h3>
-                    <p>All our work is backed by a satisfaction guarantee and warranty.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =========================================
-         PROJECTS GALLERY
-         ========================================= -->
-    <section class="section-padding projects" id="projects">
-        <div class="container">
-            <div class="section-header fade-in-up">
-                <h2>Our Recent Projects</h2>
-                <div class="accent-line"></div>
-                <p>A glimpse into our quality workmanship and attention to detail.</p>
-            </div>
-
-            <div class="gallery-grid">
-                <div class="gallery-item fade-in-up" onclick="openLightbox(this)">
-                    <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Electrical Panel Installation" loading="lazy">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item fade-in-up" onclick="openLightbox(this)">
-                    <img src="https://images.unsplash.com/photo-1558402529-d2638a7023e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Modern Lighting Setup" loading="lazy">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item fade-in-up" onclick="openLightbox(this)">
-                    <img src="https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Commercial Wiring" loading="lazy">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item fade-in-up" onclick="openLightbox(this)">
-                    <img src="https://images.unsplash.com/photo-1565514020176-db9e27746583?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Security Camera Installation" loading="lazy">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item fade-in-up" onclick="openLightbox(this)">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Office Electrical Setup" loading="lazy">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item fade-in-up" onclick="openLightbox(this)">
-                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Generator Installation" loading="lazy">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lightbox Modal -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightbox-img" src="" alt="Project Preview">
-    </div>
-
-    <!-- =========================================
-         TESTIMONIALS
-         ========================================= -->
-    <section class="section-padding testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-header fade-in-up">
-                <h2>What Our Clients Say</h2>
-                <div class="accent-line"></div>
-                <p>Trusted by homeowners and businesses across Accra.</p>
-            </div>
-
-            <div class="testimonials-grid">
-                <div class="testimonial-card fade-in-up">
-                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p class="testimonial-text">"P BOAT Company transformed our office wiring. Their team was professional, clean, and finished the job ahead of schedule. Highly recommended!"</p>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="author-img">
-                        <div class="author-info">
-                            <h4>Kwame Asante</h4>
-                            <div class="stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card fade-in-up">
-                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p class="testimonial-text">"I had a persistent electrical fault that others couldn't fix. P BOAT Company diagnosed and resolved it in under an hour. Excellent service!"</p>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="author-img">
-                        <div class="author-info">
-                            <h4>Abena Mensah</h4>
-                            <div class="stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card fade-in-up">
-                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p class="testimonial-text">"Very affordable and transparent pricing. They installed our CCTV and security lighting perfectly. Great communication via WhatsApp."</p>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Client" class="author-img">
-                        <div class="author-info">
-                            <h4>David Osei</h4>
-                            <div class="stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =========================================
-         FAQ SECTION
-         ========================================= -->
-    <section class="section-padding faq" id="faq">
-        <div class="container">
-            <div class="section-header fade-in-up">
-                <h2>Frequently Asked Questions</h2>
-                <div class="accent-line"></div>
-                <p>Find quick answers to common questions about our services.</p>
-            </div>
-
-            <div class="faq-container">
-                <div class="faq-item fade-in-up">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <span>Do you provide emergency services?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, we offer emergency electrical support for urgent issues. While our standard hours are Monday to Saturday, 8:00 AM to 6:00 PM, we are available for emergency calls on Sundays.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in-up">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <span>Do you work on commercial buildings?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Absolutely. We provide comprehensive commercial electrical services including office wiring, distribution board upgrades, and heavy-duty lighting installations for businesses of all sizes.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in-up">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <span>Can I request a quotation?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, you can easily request a free quotation by sending us a message on WhatsApp with details of your project. We will respond promptly with an estimate.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in-up">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <span>Do you work outside East Legon?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, while we are based in East Legon, we serve homes, offices, and businesses across the entire Greater Accra region.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in-up">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <span>Is WhatsApp the fastest way to contact you?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, WhatsApp is our primary and fastest communication channel. Click any WhatsApp button on this site to connect with us instantly for bookings, quotes, or inquiries.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =========================================
-         CONTACT SECTION
-         ========================================= -->
-    <section class="section-padding contact" id="contact">
-        <div class="container">
-            <div class="contact-content fade-in-up">
-                <h2>Ready to Power Up Your Space?</h2>
-                <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 30px;">Contact P BOAT Company today for a free quotation or to schedule a service. We are just a message away!</p>
+    <main>
+        <!-- HOME SECTION -->
+        <section class="page-section active" id="home">
+            <div class="hero">
+                <div class="floating-shape shape-1"></div>
+                <div class="floating-shape shape-2"></div>
+                <div class="floating-shape shape-3"></div>
                 
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h4>Location</h4>
-                        <p>East Legon, Accra, Ghana</p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <h4>Working Hours</h4>
-                        <p>Mon – Sat: 8:00 AM – 6:00 PM<br>Sun: Emergency Calls Only</p>
+                <div class="container">
+                    <div class="hero-content fade-in-up visible">
+                        <h1>Professional Electrical Services <br><span class="typing-text" id="typingText"></span></h1>
+                        <p>Serving homes, offices, apartments and businesses across East Legon and Greater Accra with reliable, affordable and safe electrical solutions by P BOAT Ltd.</p>
+                        <div class="hero-buttons">
+                            <a href="https://wa.me/233542626856?text=Hello%20P%20BOAT%20Ltd,%20I%20want%20to%20book%20an%20electrical%20service." class="btn btn-primary" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Book on WhatsApp
+                            </a>
+                            <a href="#" class="btn btn-outline" onclick="showSection('services')">
+                                <i class="fas fa-tools"></i> View Our Services
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <a href="https://wa.me/233XXXXXXXXX?text=Hello%20P%20BOAT%20Company,%20I%20would%20like%20to%20request%20a%20quotation%20for%20electrical%20services." class="btn btn-whatsapp" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Chat with Us on WhatsApp
-                </a>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section class="page-section section-padding about" id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content fade-in-up">
+                        <div class="section-header" style="text-align: left; margin-bottom: 30px;">
+                            <h2>Who We Are</h2>
+                            <div class="accent-line" style="margin: 15px 0;"></div>
+                        </div>
+                        <h3>Powering Homes & Businesses with Safe, Reliable Electrical Solutions.</h3>
+                        <p>P BOAT Ltd is a premier electrical contracting company based in East Legon, Accra. With years of hands-on experience, we specialize in delivering top-tier electrical installation, maintenance, and repair services.</p>
+                        <p>Our commitment to safety, quality workmanship, and customer satisfaction has made us the trusted choice for residential and commercial clients across Greater Accra. We use only certified materials and adhere to the highest industry standards.</p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-number" data-target="10">0</span>
+                                <span class="stat-label">Years Experience</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-target="500">0</span>
+                                <span class="stat-label">Projects Done</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-target="100">0</span>
+                                <span class="stat-label">% Satisfaction</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image fade-in-up">
+                        <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a782?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Professional Electrician at Work" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section class="page-section section-padding services" id="services">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h2>Our Services</h2>
+                    <div class="accent-line"></div>
+                    <p>Comprehensive electrical solutions tailored to meet your specific needs with precision and care.</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon"><i class="fas fa-home"></i></div>
+                        <h3>House Wiring</h3>
+                        <p>Complete and safe electrical wiring for new constructions and renovations.</p>
+                    </div>
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon"><i class="fas fa-wrench"></i></div>
+                        <h3>Electrical Repairs</h3>
+                        <p>Quick and reliable fixes for all types of electrical faults and issues.</p>
+                    </div>
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon"><i class="fas fa-search"></i></div>
+                        <h3>Fault Detection</h3>
+                        <p>Advanced diagnostic services to identify and resolve hidden electrical problems.</p>
+                    </div>
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
+                        <h3>Lighting Installation</h3>
+                        <p>Indoor and outdoor lighting solutions to enhance aesthetics and security.</p>
+                    </div>
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon"><i class="fas fa-fan"></i></div>
+                        <h3>Ceiling Fan Installation</h3>
+                        <p>Secure and balanced installation of all ceiling fan types and brands.</p>
+                    </div>
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon"><i class="fas fa-plug"></i></div>
+                        <h3>Switch & Socket Installation</h3>
+                        <p>Safe installation and upgrading of switches, sockets, and USB outlets.</p>
+                    </div>
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon"><i class="fas fa-server"></i></div>
+                        <h3>Distribution Board</h3>
+                        <p>Professional installation and upgrading of electrical distribution boards.</p>
+                    </div>
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon"><i class="fas fa-charging-station"></i></div>
+                        <h3>Generator Installation</h3>
+                        <p>Seamless integration of backup generators with automatic transfer switches.</p>
+                    </div>
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Security Lighting</h3>
+                        <p>Motion-sensor and floodlight installation for maximum property security.</p>
+                    </div>
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon"><i class="fas fa-video"></i></div>
+                        <h3>CCTV Wiring</h3>
+                        <p>Professional cabling and setup for security camera systems.</p>
+                    </div>
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon"><i class="fas fa-building"></i></div>
+                        <h3>Commercial Services</h3>
+                        <p>Heavy-duty electrical solutions for offices, shops, and industrial spaces.</p>
+                    </div>
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon"><i class="fas fa-ambulance"></i></div>
+                        <h3>Emergency Support</h3>
+                        <p>Rapid response team available for urgent electrical emergencies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY CHOOSE US SECTION -->
+        <section class="page-section section-padding why-choose-us" id="why-choose-us">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h2>Why Choose P BOAT Ltd</h2>
+                    <div class="accent-line"></div>
+                    <p>We combine expertise, reliability, and customer-centric service to deliver unmatched electrical solutions.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card fade-in-up">
+                        <div class="feature-icon"><i class="fas fa-user-tie"></i></div>
+                        <h3>Professional Team</h3>
+                        <p>Licensed, insured, and highly trained electricians committed to excellence.</p>
+                    </div>
+                    <div class="feature-card fade-in-up">
+                        <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <h3>Fast Response</h3>
+                        <p>Prompt arrival and efficient service to minimize your downtime.</p>
+                    </div>
+                    <div class="feature-card fade-in-up">
+                        <div class="feature-icon"><i class="fas fa-tags"></i></div>
+                        <h3>Affordable Pricing</h3>
+                        <p>Transparent, competitive rates with no hidden fees or surprise charges.</p>
+                    </div>
+                    <div class="feature-card fade-in-up">
+                        <div class="feature-icon"><i class="fas fa-award"></i></div>
+                        <h3>Guaranteed Quality</h3>
+                        <p>All our work is backed by a satisfaction guarantee and warranty.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section class="page-section section-padding projects" id="projects">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h2>Our Recent Projects</h2>
+                    <div class="accent-line"></div>
+                    <p>A glimpse into our quality workmanship and attention to detail.</p>
+                </div>
+
+                <div class="coming-soon-container fade-in-up">
+                    <div class="coming-soon-card">
+                        <i class="fas fa-hard-hat"></i>
+                        <h3>Coming Soon</h3>
+                        <p>We are currently compiling our best project portfolios. Check back soon to see our premium electrical installations!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS SECTION -->
+        <section class="page-section section-padding testimonials" id="testimonials">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h2>What Our Clients Say</h2>
+                    <div class="accent-line"></div>
+                    <p>Trusted by homeowners and businesses across Accra.</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card fade-in-up">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-text">"P BOAT Ltd transformed our office wiring. Their team was professional, clean, and finished the job ahead of schedule. Highly recommended!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Kwame Asante</h4>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card fade-in-up">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-text">"I had a persistent electrical fault that others couldn't fix. P BOAT Ltd diagnosed and resolved it in under an hour. Excellent service!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Abena Mensah</h4>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card fade-in-up">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-text">"Very affordable and transparent pricing. They installed our CCTV and security lighting perfectly. Great communication via WhatsApp."</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>David Osei</h4>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="page-section section-padding faq" id="faq">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="accent-line"></div>
+                    <p>Find quick answers to common questions about our services.</p>
+                </div>
+
+                <div class="faq-container">
+                    <div class="faq-item fade-in-up">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>Do you provide emergency services?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we offer emergency electrical support for urgent issues. While our standard hours are Monday to Saturday, 8:00 AM to 6:00 PM, we are available for emergency calls on Sundays.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-in-up">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>Do you work on commercial buildings?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely. We provide comprehensive commercial electrical services including office wiring, distribution board upgrades, and heavy-duty lighting installations for businesses of all sizes.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-in-up">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>Can I request a quotation?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you can easily request a free quotation by sending us a message on WhatsApp with details of your project. We will respond promptly with an estimate.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-in-up">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>Do you work outside East Legon?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, while we are based in East Legon, we serve homes, offices, and businesses across the entire Greater Accra region.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-in-up">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>Is WhatsApp the fastest way to contact you?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, WhatsApp is our primary and fastest communication channel. Click any WhatsApp button on this site to connect with us instantly for bookings, quotes, or inquiries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section class="page-section section-padding contact" id="contact">
+            <div class="container">
+                <div class="contact-content fade-in-up">
+                    <h2>Ready to Power Up Your Space?</h2>
+                    <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 30px;">Contact P BOAT Ltd today for a free quotation or to schedule a service. We are just a message away!</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h4>Location</h4>
+                            <p>East Legon, Accra, Ghana</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <h4>Working Hours</h4>
+                            <p>Mon – Sat: 8:00 AM – 6:00 PM<br>Sun: Emergency Calls Only</p>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/233542626856?text=Hello%20P%20BOAT%20Ltd,%20I%20would%20like%20to%20request%20a%20quotation%20for%20electrical%20services." class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Chat with Us on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- =========================================
          FOOTER
@@ -1447,11 +1414,11 @@
                 <div class="footer-col">
                     <div class="logo" style="margin-bottom: 20px; color: var(--white);">
                         <i class="fas fa-bolt"></i>
-                        <span>P BOAT Company</span>
+                        <span>P BOAT Ltd</span>
                     </div>
                     <p>Professional electrical installation and maintenance services in East Legon, Accra. Safe, reliable, and affordable solutions for homes and businesses.</p>
                     <div class="social-links">
-                        <a href="https://wa.me/233XXXXXXXXX" target="_blank" aria-label="WhatsApp">
+                        <a href="https://wa.me/233542626856" target="_blank" aria-label="WhatsApp">
                             <i class="fab fa-whatsapp"></i>
                         </a>
                     </div>
@@ -1460,37 +1427,38 @@
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
-                        <li><a href="#projects"><i class="fas fa-chevron-right"></i> Projects</a></li>
-                        <li><a href="#faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="#" onclick="showSection('home')"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#" onclick="showSection('about')"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#" onclick="showSection('services')"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="#" onclick="showSection('projects')"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                        <li><a href="#" onclick="showSection('faq')"><i class="fas fa-chevron-right"></i> FAQ</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <h3>Our Services</h3>
                     <ul class="footer-links">
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> House Wiring</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Electrical Repairs</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Generator Installation</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> CCTV Wiring</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Emergency Support</a></li>
+                        <li><a href="#" onclick="showSection('services')"><i class="fas fa-chevron-right"></i> House Wiring</a></li>
+                        <li><a href="#" onclick="showSection('services')"><i class="fas fa-chevron-right"></i> Electrical Repairs</a></li>
+                        <li><a href="#" onclick="showSection('services')"><i class="fas fa-chevron-right"></i> Generator Installation</a></li>
+                        <li><a href="#" onclick="showSection('services')"><i class="fas fa-chevron-right"></i> CCTV Wiring</a></li>
+                        <li><a href="#" onclick="showSection('services')"><i class="fas fa-chevron-right"></i> Emergency Support</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <h3>Contact Info</h3>
                     <ul class="footer-links">
-                        <li><a href="#contact"><i class="fas fa-map-marker-alt"></i> East Legon, Accra, Ghana</a></li>
-                        <li><a href="https://wa.me/233XXXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Only</a></li>
-                        <li><a href="#contact"><i class="fas fa-clock"></i> Mon-Sat: 8AM - 6PM</a></li>
+                        <li><a href="#" onclick="showSection('contact')"><i class="fas fa-map-marker-alt"></i> East Legon, Accra, Ghana</a></li>
+                        <li><a href="https://wa.me/233542626856" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Only</a></li>
+                        <li><a href="#" onclick="showSection('contact')"><i class="fas fa-clock"></i> Mon-Sat: 8AM - 6PM</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2024 P BOAT Company. All Rights Reserved.</p>
+                <p>&copy; 2024 P BOAT Ltd. All Rights Reserved.</p>
+                <p class="powered-by">Powered by KS1 Empire Global Foundation (KS1EGF)</p>
             </div>
         </div>
     </footer>
@@ -1498,11 +1466,11 @@
     <!-- =========================================
          FLOATING ELEMENTS
          ========================================= -->
-    <a href="https://wa.me/233XXXXXXXXX?text=Hello%20P%20BOAT%20Company,%20I%20need%20electrical%20assistance!" class="floating-whatsapp" target="_blank" aria-label="Contact on WhatsApp">
+    <a href="https://wa.me/233542626856?text=Hello%20P%20BOAT%20Ltd,%20I%20need%20electrical%20assistance!" class="floating-whatsapp" target="_blank" aria-label="Contact on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <button class="back-to-top" id="backToTop" aria-label="Back to Top">
+    <button class="back-to-top" id="backToTop" aria-label="Back to Top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -1511,24 +1479,41 @@
          ========================================= -->
     <script>
         // =========================================
-        // 1. Mobile Menu Toggle
+        // 1. Section Toggling (SPA Feel)
         // =========================================
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when a link is clicked
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show target section
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Re-trigger animations for the new section
+                setTimeout(() => {
+                    observeElements();
+                }, 100);
+            }
+            
+            // Close mobile menu
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            if (hamburger && navMenu) {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
-            });
-        });
+            }
+        }
+
+        function toggleMobileMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
 
         // =========================================
         // 2. Typing Effect in Hero Section
@@ -1565,33 +1550,36 @@
             setTimeout(type, typeSpeed);
         }
 
-        // Start typing effect when page loads
         document.addEventListener('DOMContentLoaded', type);
 
         // =========================================
         // 3. Scroll Animations (Intersection Observer)
         // =========================================
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        function observeElements() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    
-                    // Trigger counter animation if it's a stat number
-                    if (entry.target.querySelector('.stat-number')) {
-                        animateCounters(entry.target);
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Trigger counter animation if it's a stat number
+                        if (entry.target.querySelector('.stat-number')) {
+                            animateCounters(entry.target);
+                        }
                     }
-                }
-            });
-        }, observerOptions);
+                });
+            }, observerOptions);
 
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            observer.observe(el);
-        });
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', observeElements);
 
         // =========================================
         // 4. Animated Counters
@@ -1599,9 +1587,12 @@
         function animateCounters(container) {
             const counters = container.querySelectorAll('.stat-number');
             counters.forEach(counter => {
+                if (counter.dataset.animated) return; // Prevent re-animation
+                counter.dataset.animated = "true";
+                
                 const target = +counter.getAttribute('data-target');
-                const duration = 2000; // 2 seconds
-                const increment = target / (duration / 16); // 60fps
+                const duration = 2000;
+                const increment = target / (duration / 16);
                 
                 let current = 0;
                 const updateCounter = () => {
@@ -1624,47 +1615,19 @@
             const faqItem = element.parentElement;
             const isActive = faqItem.classList.contains('active');
             
-            // Close all FAQ items
             document.querySelectorAll('.faq-item').forEach(item => {
                 item.classList.remove('active');
             });
             
-            // Open clicked item if it wasn't active
             if (!isActive) {
                 faqItem.classList.add('active');
             }
         }
 
         // =========================================
-        // 6. Lightbox Gallery
-        // =========================================
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-
-        function openLightbox(element) {
-            const img = element.querySelector('img');
-            lightboxImg.src = img.src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-        }
-
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restore scrolling
-        }
-
-        // Close lightbox with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                closeLightbox();
-            }
-        });
-
-        // =========================================
-        // 7. Back to Top Button
+        // 6. Back to Top Button Visibility
         // =========================================
         const backToTopBtn = document.getElementById('backToTop');
-
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 backToTopBtn.classList.add('visible');
@@ -1673,45 +1636,15 @@
             }
         });
 
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
         // =========================================
-        // 8. Button Ripple Effect
-        // =========================================
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const ripple = document.createElement('span');
-                ripple.classList.add('ripple');
-                
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => ripple.remove(), 600);
-            });
-        });
-
-        // =========================================
-        // 9. Header Shadow on Scroll
+        // 7. Header Shadow on Scroll
         // =========================================
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
             } else {
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
             }
         });
     </script>
