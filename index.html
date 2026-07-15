@@ -1023,21 +1023,23 @@
         }
 
         /* =========================================
-           13. FLOATING ELEMENTS
+           13. FLOATING ELEMENTS - FIXED POSITIONING
            ========================================= */
+        
+        /* WhatsApp Button - Bottom */
         .floating-whatsapp {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 65px;
-            height: 65px;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             box-shadow: 0 6px 0 var(--primary-dark), 0 10px 25px rgba(11, 61, 145, 0.4);
             z-index: 999;
             transition: var(--transition);
@@ -1062,20 +1064,20 @@
             100% { box-shadow: 0 6px 0 var(--primary-dark), 0 0 0 0 rgba(11, 61, 145, 0); }
         }
 
-        /* Share Button Styling */
+        /* Share Button - Middle */
         .floating-share {
             position: fixed;
-            bottom: 110px;
-            right: 30px;
-            width: 65px;
-            height: 65px;
+            bottom: 95px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             border: none;
             cursor: pointer;
             box-shadow: 0 6px 0 var(--primary-dark), 0 10px 25px rgba(11, 61, 145, 0.4);
@@ -1093,26 +1095,27 @@
             box-shadow: 0 2px 0 var(--primary-dark), 0 5px 10px rgba(11, 61, 145, 0.4);
         }
 
+        /* Back to Top Button - Top (always visible when scrolled) */
         .back-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 110px;
-            width: 50px;
-            height: 50px;
+            bottom: 170px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
             background-color: var(--white);
             color: var(--primary);
-            border-radius: 12px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
             transition: var(--transition);
             z-index: 997;
             border: 2px solid var(--primary);
-            box-shadow: 0 4px 0 var(--primary), 0 8px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 0 var(--primary), 0 10px 25px rgba(0,0,0,0.15);
         }
 
         .back-to-top.visible {
@@ -1124,12 +1127,40 @@
             background-color: var(--primary);
             color: var(--white);
             transform: translateY(-3px);
-            box-shadow: 0 7px 0 var(--primary-dark), 0 12px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 9px 0 var(--primary-dark), 0 15px 30px rgba(0,0,0,0.2);
         }
 
         .back-to-top:active {
-            transform: translateY(2px);
-            box-shadow: 0 1px 0 var(--primary-dark), 0 3px 5px rgba(0,0,0,0.1);
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 var(--primary-dark), 0 5px 10px rgba(0,0,0,0.15);
+        }
+
+        /* Desktop positioning */
+        @media (min-width: 769px) {
+            .floating-whatsapp {
+                bottom: 30px;
+                right: 30px;
+                width: 65px;
+                height: 65px;
+                font-size: 2.2rem;
+            }
+
+            .floating-share {
+                bottom: 110px;
+                right: 30px;
+                width: 65px;
+                height: 65px;
+                font-size: 1.6rem;
+            }
+
+            .back-to-top {
+                bottom: 30px;
+                right: 110px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                border-radius: 12px;
+            }
         }
 
         /* =========================================
@@ -1173,15 +1204,25 @@
             .section-header h2 { font-size: 2rem; }
             .stats-grid { grid-template-columns: 1fr; }
             .contact-info { flex-direction: column; gap: 30px; }
-            .back-to-top { right: 30px; bottom: 110px; }
-            .floating-whatsapp { right: 20px; bottom: 20px; width: 60px; height: 60px; font-size: 1.8rem; }
-            .floating-share { right: 20px; bottom: 95px; width: 55px; height: 55px; font-size: 1.4rem; }
         }
 
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.8rem; }
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn { width: 100%; justify-content: center; }
+            
+            /* Smaller buttons on very small screens */
+            .floating-whatsapp,
+            .floating-share,
+            .back-to-top {
+                width: 55px;
+                height: 55px;
+                font-size: 1.4rem;
+            }
+
+            .floating-whatsapp { bottom: 15px; right: 15px; }
+            .floating-share { bottom: 85px; right: 15px; }
+            .back-to-top { bottom: 155px; right: 15px; }
         }
     </style>
 </head>
@@ -1629,21 +1670,21 @@
     </footer>
 
     <!-- =========================================
-         FLOATING ELEMENTS
+         FLOATING BUTTONS - STACKED VERTICALLY
          ========================================= -->
     
-    <!-- Share Button -->
-    <button class="floating-share" onclick="shareWebsite()" aria-label="Share Website">
-        <i class="fas fa-share-nodes"></i>
-    </button>
-
-    <!-- WhatsApp Button -->
+    <!-- WhatsApp Button - Bottom -->
     <a href="https://wa.me/233542626856?text=Hello%20P%20BOAT%20Ltd,%20I%20need%20electrical%20assistance!" class="floating-whatsapp" target="_blank" aria-label="Contact on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to Top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <!-- Share Button - Middle -->
+    <button class="floating-share" onclick="shareWebsite()" aria-label="Share Website">
+        <i class="fas fa-share-nodes"></i>
+    </button>
+
+    <!-- Back to Top Button - Top -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to Top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -1661,18 +1702,15 @@
                 url: window.location.href
             };
 
-            // Use native share API if available (mobile devices)
             if (navigator.share) {
                 navigator.share(shareData).catch(console.error);
             } else {
-                // Fallback: Copy to clipboard for desktop
                 navigator.clipboard.writeText(window.location.href).then(() => {
-                    // Create a temporary toast notification
                     const toast = document.createElement('div');
                     toast.textContent = 'Link copied to clipboard!';
                     toast.style.position = 'fixed';
-                    toast.style.bottom = '180px';
-                    toast.style.right = '30px';
+                    toast.style.bottom = '240px';
+                    toast.style.right = '20px';
                     toast.style.backgroundColor = 'var(--primary)';
                     toast.style.color = 'white';
                     toast.style.padding = '12px 24px';
@@ -1699,24 +1737,20 @@
         // 2. Section Toggling (SPA Feel)
         // =========================================
         function showSection(sectionId) {
-            // Hide all sections
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active');
             });
             
-            // Show target section
             const target = document.getElementById(sectionId);
             if (target) {
                 target.classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 
-                // Re-trigger animations for the new section
                 setTimeout(() => {
                     observeElements();
                 }, 100);
             }
             
-            // Close mobile menu
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.getElementById('navMenu');
             if (hamburger && navMenu) {
@@ -1757,11 +1791,11 @@
 
             if (!isDeleting && charIndex === currentWord.length) {
                 isDeleting = true;
-                typeSpeed = 2000; // Pause at end of word
+                typeSpeed = 2000;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
-                typeSpeed = 500; // Pause before new word
+                typeSpeed = 500;
             }
 
             setTimeout(type, typeSpeed);
@@ -1783,7 +1817,6 @@
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                         
-                        // Trigger counter animation if it's a stat number
                         if (entry.target.querySelector('.stat-number')) {
                             animateCounters(entry.target);
                         }
@@ -1804,7 +1837,7 @@
         function animateCounters(container) {
             const counters = container.querySelectorAll('.stat-number');
             counters.forEach(counter => {
-                if (counter.dataset.animated) return; // Prevent re-animation
+                if (counter.dataset.animated) return;
                 counter.dataset.animated = "true";
                 
                 const target = +counter.getAttribute('data-target');
